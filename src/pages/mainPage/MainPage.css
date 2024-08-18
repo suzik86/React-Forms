@@ -1,0 +1,71 @@
+.links-wrapper {
+  display: flex;
+  justify-content: space-between;
+  margin: 20px;
+  gap: 25px;
+}
+
+.data-block {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 20px;
+  padding: 20px;
+  border: 1px solid #000;
+  border-radius: 10px;
+  background-color: #f0f0f0;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+.form-data-item {
+  font-weight: 600;
+  padding-left: 15px;
+}
+
+.form-link {
+  font-size: 20px;
+}
+
+.form-link .link-title {
+  margin-top: 0;
+  color: #000;
+}
+
+.form-link:hover .link-title {
+  text-shadow: 2px 2px 5px green;
+  color: #000;
+}
+
+.card-title {
+  color: green;
+  font-size: 18px;
+  font-weight: 600;
+  margin-top: 0;
+}
+
+.history-title {
+  color: green;
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.history-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+  border-bottom: 1px solid #000;
+}
+
+.form-link li {
+  list-style-type: none;
+}
+
+.no-data {
+  color: black;
+  font-size: 18px;
+}
+
+.data-block img {
+  margin-top: 10px;
+}
