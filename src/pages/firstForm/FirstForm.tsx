@@ -52,7 +52,7 @@ const FirstForm: React.FC = () => {
       confirmPassword: confirmPasswordRef.current?.value,
       picture: file,
       gender: genderRef.current?.value,
-      terms: termsRef.current?.checked || false,
+      acceptTerms: termsRef.current?.checked || false,
       country: countryRef.current?.value,
     };
 
@@ -92,7 +92,7 @@ const FirstForm: React.FC = () => {
         setPasswordError(errors.password || "");
         setConfirmPasswordError(errors.confirmPassword || "");
         setGenderError(errors.gender || "");
-        setAcceptTermsError(errors.terms || "");
+        setAcceptTermsError(errors.acceptTerms || "");
         setPictureError(errors.picture || "");
         setCountryError(errors.country || "");
       }
@@ -182,10 +182,10 @@ const FirstForm: React.FC = () => {
         </div>
 
         <div>
-          <label htmlFor="terms" className="starlabel">
+          <label htmlFor="acceptTerms" className="starlabel">
             Accept Terms and Conditions:
           </label>
-          <input type="checkbox" id="terms" ref={termsRef} />
+          <input type="checkbox" id="acceptTerms" ref={termsRef} />
           {acceptTermsError && (
             <span className="error-msg">{acceptTermsError}</span>
           )}

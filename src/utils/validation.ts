@@ -16,8 +16,8 @@ const validationSchema = Yup.object().shape({
   password: Yup.string()
     .required("Password is required")
     .matches(
-      /^(?=.*[a-zа-яё])(?=.*[A-ZА-ЯЁ])(?=.*\d)(?=.*[@$!%*?&])[A-Za-zА-ЯЁа-яё\d@$!%*?&]{8,}$/,
-      "Password should contain at least 8 characters, including 1 uppercase letter, 1 lowercase letter, 1 number, and 1 special character",
+      /^(?=.*[a-zа-яё])(?=.*[A-ZА-ЯЁ])(?=.*\d)(?=.*[@$!%*?&])[A-Za-zА-ЯЁа-яё\d@$!%*?&]{4,}$/,
+      "Password should contain at least 4 characters, including 1 uppercase letter, 1 lowercase letter, 1 number, and 1 special character",
     ),
   confirmPassword: Yup.string()
     .required("Confirm Password is required")
@@ -32,15 +32,36 @@ const validationSchema = Yup.object().shape({
       "fileSize",
       "File size is too large. Max allowed size is 1MB",
       (value) => {
-        if (!value || !(value as File).size) return true;
-        return (value as File).size <= 1024 * 1024; // 1MB
+        let file: File | undefined;
+
+        if (value instanceof FileList) {
+          file = value[0];
+        } else if (value instanceof File) {
+          file = value;
+        }
+
+        if (!file) {
+          return true;
+        }
+
+        return file.size <= 1024 * 1024; // 1MB
       },
     )
     .test("fileType", "Invalid file type", (value) => {
-      if (!value || !(value as File).type) return true;
-      const file = value as File;
-      const fileType = file.type;
-      return fileType === "image/png" || fileType === "image/jpeg";
+      let file: File | undefined;
+
+      if (value instanceof FileList) {
+        file = value[0];
+      } else if (value instanceof File) {
+        file = value;
+      }
+
+      if (!file) {
+        return true;
+      }
+
+      const validTypes = ["image/png", "image/jpeg"];
+      return validTypes.includes(file.type);
     }),
   country: Yup.string().required("Country is required"),
 });
